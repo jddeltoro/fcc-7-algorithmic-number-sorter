@@ -137,3 +137,28 @@
       max-width: 420px;
     }
   }
+
+
+ #output-log {
+    min-height: 55px;
+    margin-top: 25px;
+    border-radius: 0;
+    padding: 15px;
+    overflow-wrap: break-word;
+    text-align: left;
+    background-color: var(--gray-90);
+    color: lime;
+  }
+  
+  output-log p {
+    font-size: 1.5em;
+  }
+  
+  output-log p.error {
+    color: var(--error);
+  }
+  
+  output-log p.error::before {
+    content: "Error: ";
+  }
+  
