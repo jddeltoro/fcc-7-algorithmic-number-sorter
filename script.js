@@ -9,9 +9,24 @@ const sortInputArray = (event) => {
     ].map((dropdown) => Number(dropdown.value));
 
     outputLog.innerText = "";
-    const sortedValues = insertionSort(inputValues);
+    const sortedValues = selectSorter(document.getElementById("sorter").value)(inputValues);
 
     updateUI(sortedValues);
+}
+
+const selectSorter = (sorter) => {
+    switch (sorter) {
+        case "bubble":
+            return bubbleSort;
+        case "selection":
+            return selectionSort;
+        case "insertion":
+            return insertionSort;
+        case "builtin":
+                return defaultSorter;    
+        default:
+            return defaultSorter;
+    }
 }
 
 const updateUI = (array = []) => {
@@ -19,6 +34,12 @@ const updateUI = (array = []) => {
         const outputValueNode = document.getElementById(`output-value-${i}`);
         outputValueNode.innerText = num;
     })
+}
+
+const defaultSorter = (array) => {
+    return array.sort((a, b) => {
+        return a - b;
+    });
 }
 
 const bubbleSort = (array) => {

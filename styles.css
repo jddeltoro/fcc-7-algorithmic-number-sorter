@@ -161,4 +161,8 @@
   output-log p.error::before {
     content: "Error: ";
   }
+
+  #sorter {
+    width: auto;
+  }
   
