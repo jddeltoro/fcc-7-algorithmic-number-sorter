@@ -9,7 +9,7 @@ const sortInputArray = (event) => {
     ].map((dropdown) => Number(dropdown.value));
 
     outputLog.innerText = "";
-    const sortedValues = bubbleSort(inputValues);
+    const sortedValues = insertionSort(inputValues);
 
     updateUI(sortedValues);
 }
@@ -60,20 +60,23 @@ const insertionSort = (array) => {
     for (let i = 1; i < array.length; i++) {
         const currValue = array[i];
         let j = i - 1;
-
+        console.log(array, "I value:" + array[i], "/ J value:" + array[j], " / Current Val:" + currValue);
         while (j >= 0 && array[j] > currValue) {
+            console.log("--------- ", "I:" + i, "J:" + j, array[j] > currValue)
             array[j + 1] = array[j];
             j--;
         }
-
+        array[j + 1] = currValue;
     }
+    return array;
 }
 
-sortButton.addEventListener("click", sortInputArray);
-
+//Utils
 function updateLog(iteration, array, j) {
     console.log("Iteration: " + iteration, array, array[j], array[j + 1], `, Is ${array[j]} bigger than ${array[j + 1]}: ${array[j] > array[j + 1]}`);
     const newParagraph = document.createElement("p");
-    newParagraph.innerText = `Iteration: ${iteration < 10 ? String(iteration).padStart(2,"0") : iteration} | ${String(array)}, ${array[j]}, ${array[j + 1]} | Is ${array[j]} bigger than ${array[j + 1]}: ${array[j] > array[j + 1]}`;
+    newParagraph.innerText = `Iteration: ${iteration < 10 ? String(iteration).padStart(2, "0") : iteration} | ${String(array)}, ${array[j]}, ${array[j + 1]} | Is ${array[j]} bigger than ${array[j + 1]}: ${array[j] > array[j + 1]}`;
     outputLog.appendChild(newParagraph);
 }
+
+sortButton.addEventListener("click", sortInputArray);
